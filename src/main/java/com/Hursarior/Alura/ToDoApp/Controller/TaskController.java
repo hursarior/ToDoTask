@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,9 +43,21 @@ public class TaskController {
 
     }
 
-    @GetMapping("status/{status}")
+    @GetMapping("status/{status}") 
     public List<Task> FiltrarTask(@PathVariable task_status status ){
         return taskService.filtrarStatus(status);
+        
+    }
+
+
+    @PatchMapping("/Mask_as_finished/{id}")
+    public ResponseEntity<Void> MarkAsFinished(@PathVariable Long id){
+       if(this.taskService.UpdateTaskFinished(id)){
+        return ResponseEntity.noContent().build();
+       }else{
+        return ResponseEntity.notFound().build();
+       }
+        
         
     }
 
