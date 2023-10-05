@@ -7,48 +7,78 @@
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
         <title>Formulario</title>
     </head>
-    <body style="background-color: cornflowerblue; color: white;">
+    <body style="background-color: cornflowerblue; color: white; 
+    display: flex; flex-direction: column; align-items: center;
+    " >
 
-        <div class="container m-5" 
-        style="width: 500px; height: 500px; ">
-            
-            <div class="row justify-content-center" style=" border-radius: 7%;
-            background: rgb(238,174,202);
-            background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);">
-                
-
-
-                <form action class="row m-5 p-5">
+        <div class="container m-5 " style="width: 550px;">
+            <div class="row">
+                <form action class="row m-5 p-5" id="tareaForm">
                     <h1>Crear Tarea</h1>
 
                     <div class="m-3">
                         <label for class="form-label">Titulo</label>
-                        <input type="text" name id class="form-control"
+                        <input type="text" name id="titulo" class="form-control"
                             placeholder aria-describedby="helpId">
-                        </div>
-
-                        <div class="m-3">
-                        <label for class="form-label">Descripcion</label>
-                        <input type="text" name id class="form-control"
-                            placeholder aria-describedby="helpId">
-                        </div>
-
-                        <div class="m-3">
-                        <label for class="form-label">Fecha Limite</label>
-                        <input type="date" name id class="form-control"
-                            placeholder aria-describedby="helpId">
-                        </div>
-
-                    <div class="col-12 text-center">
-                        <input type="button" class="btn btn-outline-dark btn-lg" value="Crear Tarea">
                     </div>
 
+                    <div class="m-3">
+                        <label for class="form-label">Descripcion</label>
+                        <input type="text" name id="descripcion" class="form-control"
+                            placeholder aria-describedby="helpId">
+                    </div>
 
+                    <div class="m-3">
+                        <label for class="form-label">Fecha Limite</label>
+                        <input type="date" name id="fecha_limite" class="form-control"
+                            placeholder aria-describedby="helpId">
+                    </div>
+
+                    <div class="col-12 text-center">
+                        <input type="submit" class="btn btn-outline-dark btn-lg" value="Crear Tarea">
+                    </div>
                 </form>
-
             </div>
         </div>
-
+        <script>
+            document.getElementById("tareaForm").addEventListener("submit", function(event) {
+                event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
+    
+                // Obtén los valores de los campos del formulario
+                var titulo = document.getElementById("titulo").value;
+                var descripcion = document.getElementById("descripcion").value;
+                var fechaLimite = document.getElementById("fecha_limite").value;
+    
+                // Crea un objeto con los datos que deseas enviar
+                var tareaData = {
+                    titulo: titulo,
+                    descripcion: descripcion,
+                    eta: fechaLimite+'T15:00:00'
+                };
+    
+                // Realiza la solicitud POST utilizando fetch
+                fetch('/Tasks', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(tareaData) // Convierte los datos a JSON
+                })
+                .then(function(response) {
+                    if (response.status === 200) {
+                        // La solicitud se completó con éxito
+                        alert("Tarea agregada con éxito");
+                        // Puedes redirigir o hacer otras acciones aquí
+                    } else {
+                        // La solicitud no se completó con éxito
+                        alert("Hubo un error al agregar la tarea");
+                    }
+                })
+                .catch(function(error) {
+                    console.error("Error en la solicitud:", error);
+                });
+            });
+        </script>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     </body>
