@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class ToDoException {
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity tratarError404(){
+    public ResponseEntity<Void> tratarError404(){
         return ResponseEntity.notFound().build();
     }
 

@@ -19,16 +19,16 @@ document.addEventListener("DOMContentLoaded", () => {
       data.forEach(task => {
         // Crear una tarjeta HTML para la tarea
         const card = document.createElement('div');
-        card.className = 'col-sm-6 p-2 mb-3 mb-sm-0';
+        card.className = 'col-sm-6 p-2 m-3 mb-sm-0';
         card.innerHTML = `
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">${task.titulo}</h5>
                 <p class="card-text">${task.descripcion}</p>
-                <p class="card-text">${task.eta}</p>
-                <p class="card-text">${task.finished}</p>
-                <a href="#" class="btn btn-primary" onclick="MarcarHecho(${task.id})">Tarea hecha</a>
-                <a href="#" class="btn btn-primary" onclick="EliminarTarea(${task.id})">Borrar Tarea</a>
+                <p class="card-text">${task.eta}<br>
+               <strong> Realizada;${task.finished}</strong></p>
+                <a href="index.html" class="btn btn-primary btn-lg" onclick="MarcarHecho(${task.id})">Tarea hecha</a>
+                <a href="index.html" class="btn btn-primary btn-lg" onclick="EliminarTarea(${task.id})">Borrar Tarea</a>
               </div>
             </div>
           `;
@@ -44,8 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function EliminarTarea(id) {
 
-  const url = '/Mask_as_finished/' + id;
-  fetch(url)
+  const url = '/Tasks/'+id;
+  fetch(url, {method: 'DELETE'})
     .then(res => res.status)
     .catch(error => {
       console.error('Hubo un error:', error);
@@ -53,3 +53,13 @@ function EliminarTarea(id) {
 
 }
 
+function MarcarHecho(id) {
+
+  const url = '/Tasks/Mask_as_finished/'+id;
+  fetch(url, {method: 'PATCH'})
+    .then(res => res.status)
+    .catch(error => {
+      console.error('Hubo un error:', error);
+    });
+
+}
