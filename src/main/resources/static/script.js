@@ -19,16 +19,16 @@ document.addEventListener("DOMContentLoaded", () => {
       data.forEach(task => {
         // Crear una tarjeta HTML para la tarea
         const card = document.createElement('div');
-        card.className = 'col-sm-6 p-2 m-3 mb-sm-0';
+        card.className = 'col-sm-5 p-1 m-2 mb-sm-0';
         card.innerHTML = `
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">${task.titulo}</h5>
                 <p class="card-text">${task.descripcion}</p>
                 <p class="card-text">${task.eta}<br>
-               <strong> Realizada;${task.finished}</strong></p>
-                <a href="index.html" class="btn btn-primary btn-lg" onclick="MarcarHecho(${task.id})">Tarea hecha</a>
-                <a href="index.html" class="btn btn-primary btn-lg" onclick="EliminarTarea(${task.id})">Borrar Tarea</a>
+               <strong>Realizada;${task.finished}</strong></p>
+                <a href="index.html" class="btn btn-primary" onclick="MarcarHecho(${task.id})">Tarea hecha</a>
+                <a href="index.html" class="btn btn-primary" onclick="EliminarTarea(${task.id})">Borrar Tarea</a>
               </div>
             </div>
           `;
