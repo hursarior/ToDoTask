@@ -59,4 +59,14 @@ public class TaskService {
 
     }
 
+
+    public  List<Task> filtrarTareasHechas(boolean finished){
+
+        if (this.repository.existsByFinished(finished)) {
+            return this.repository.findallByfinished(finished);
+        }
+        throw new EntityNotFoundException();
+  
+    }
+
 }

@@ -61,5 +61,9 @@ public class TaskController {
         
     }
 
+    @GetMapping("/true")
+    public List<Task> taskHechas(){
+        return this.taskService.filtrarTareasHechas(true);
+    }
 
 }

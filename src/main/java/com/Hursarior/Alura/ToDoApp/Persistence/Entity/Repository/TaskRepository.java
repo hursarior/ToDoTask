@@ -22,4 +22,9 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     public void markTaskFinish(@Param("id") Long id);
 
     public boolean existsByStatus(task_status status);
+
+    @Query("SELECT t FROM Task t WHERE t.finished = :finished")
+    public List<Task> findallByfinished(@Param("finished") boolean finished);
+
+    public boolean existsByFinished(boolean finished);
 }
