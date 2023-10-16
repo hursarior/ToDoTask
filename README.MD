@@ -20,7 +20,7 @@ API Centrada en Tasks, permite a los usuarios:
 
 # Frontend TO DO APP
 
-![Frontend](<To Do App - Google Chrome 2023-09-30 20-39-04.gif>)
+![Alt text](<To Do App - Google Chrome 2023-10-15 23-29-05.gif>)
   
 # Descripcion de los EndPoints de la API
 
