@@ -105,3 +105,48 @@ function FiltrarHecho(){
     });
 
 }
+
+document.getElementById("tareaForm").addEventListener("submit", function(event) {
+  event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
+
+  // Obtén los valores de los campos del formulario
+  var titulo = document.getElementById("titulo").value;
+  var descripcion = document.getElementById("descripcion").value;
+  var fechaLimite = document.getElementById("fecha_limite").value;
+
+  // Crea un objeto con los datos que deseas enviar
+  var tareaData = {
+      titulo: titulo,
+      descripcion: descripcion,
+      eta: fechaLimite+'T15:00:00'
+  };
+
+  // Realiza la solicitud POST utilizando fetch
+  fetch('/Tasks', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(tareaData) // Convierte los datos a JSON
+  })
+  .then(function(response) {
+      if (response.status === 200) {
+          // La solicitud se completó con éxito
+          limpiarformulario();
+          alert("Tarea agregada con éxito");
+          // Puedes redirigir o hacer otras acciones aquí
+      } else {
+          // La solicitud no se completó con éxito
+          alert("Hubo un error al agregar la tarea");
+      }
+  })
+  .catch(function(error) {
+      console.error("Error en la solicitud:", error);
+  });
+});
+
+function limpiarformulario(){
+  var titulo = document.getElementById("titulo").value = "";
+  var descripcion = document.getElementById("descripcion").value = "";
+  var fechaLimite = document.getElementById("fecha_limite").value = "";
+}
