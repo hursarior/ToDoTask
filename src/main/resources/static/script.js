@@ -65,7 +65,8 @@ function MarcarHecho(id) {
 }
 
 function FiltrarHecho(){
-  const cardContainer = document.getElementById("tareas_realizadas");
+  const cardContainer = document.getElementById("mesa_de_tareas");
+  cardContainer.innerHTML = ``
 
   // Realizar la solicitud fetch
   fetch('/Tasks/true')
