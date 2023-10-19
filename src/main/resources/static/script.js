@@ -121,7 +121,7 @@ document.getElementById("tareaForm").addEventListener("submit", function(event) 
       descripcion: descripcion,
       eta: fechaLimite+'T15:00:00'
   };
-
+  ListarTareas(titulo);
   // Realiza la solicitud POST utilizando fetch
   fetch('/Tasks', {
       method: 'POST',
@@ -133,8 +133,10 @@ document.getElementById("tareaForm").addEventListener("submit", function(event) 
   .then(function(response) {
       if (response.status === 200) {
           // La solicitud se completó con éxito
+
           limpiarformulario();
           alert("Tarea agregada con éxito");
+          
           // Puedes redirigir o hacer otras acciones aquí
       } else {
           // La solicitud no se completó con éxito
@@ -150,4 +152,14 @@ function limpiarformulario(){
   var titulo = document.getElementById("titulo").value = "";
   var descripcion = document.getElementById("descripcion").value = "";
   var fechaLimite = document.getElementById("fecha_limite").value = "";
+}
+
+function ListarTareas(titulo){
+
+  const cardlista  = document.getElementById("listarTareas");
+  const card = document.createElement('div');
+  card.innerHTML =
+  ' <li class="list-group-item active"  style=" border-bottom: solid 2px black;" aria-current="true"> ' + titulo + ' </li> ';
+  cardlista.appendChild(card);
+
 }
