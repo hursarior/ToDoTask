@@ -159,7 +159,7 @@ function ListarTareas(titulo){
   const cardlista  = document.getElementById("listarTareas");
   const card = document.createElement('div');
   card.innerHTML =
-  ' <li class="list-group-item active"  style=" border-bottom: solid 2px black;" aria-current="true"> ' + titulo + ' </li> ';
+  ' <li class="list-group-item active"  style=" border-bottom: solid 2px black; max-width: 470px;" aria-current="true"> ' + titulo + ' </li> ';
   cardlista.appendChild(card);
 
 }
